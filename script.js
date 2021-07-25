@@ -1,14 +1,3 @@
-
-const getRandomCoord = async function() {
-  const url = "https://api.3geonames.org/?randomland=yes&json=1";
-	const proxy = 'proxy.php?url=' + url;
-	const resp = await fetch(proxy, { method: 'GET' });
-	const data = await resp.json();
-	const lat = data['nearest']['latt'];
-	const long = data['nearest']['longt'];
-	return (lat, long);
-}
-
 const renderImage = (data) => {
 	const imageData = data['img'];
 	const img = document.getElementById('img')
@@ -21,12 +10,13 @@ const renderError = () => {
 }
 
 const getStreetViewMetadata = async function() {
+	const spinner = document.getElementById('spinner');
+	spinner.style = "display:block";
 	const resp = await fetch('street.php');
-	console.log(resp)
 	const data = await resp.json();
-	console.log(data)
 	if (data['status'] == 'ok') {
 		renderImage(data);
+		spinner.style = "display:none";
 	} if (data['status'] == 'error') {
 		console.log(data['coord']);
 		renderError();
@@ -35,7 +25,4 @@ const getStreetViewMetadata = async function() {
 }
 
 
-
-
-document.addEventListener('click', getStreetViewMetadata)
-// document.addEventListener('click', getRandomCoord);
+document.addEventListener('DOMContentLoaded', getStreetViewMetadata)

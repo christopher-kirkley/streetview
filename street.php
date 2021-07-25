@@ -8,8 +8,6 @@ $privateKey = $api['privateKey'];
 
 
 
-
-
 class GeoCoord
 {
 
@@ -22,7 +20,7 @@ class GeoCoord
 	  for ($i = 0; $i < self::ATTEMPTS; $i++) {
 		$raw = callApi(self::url);
 		$data = json_decode($raw, true);
-		sleep(1);
+		sleep(1 * $i);
 		if ($data['nearest']) {
 		  $lat = $data['nearest']['latt'];
 		  $long = $data['nearest']['longt'];
