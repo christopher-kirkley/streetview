@@ -1,0 +1,20 @@
+pre-flight request
+
+if it's not your api, you can't do anything
+
+they don't want API request without permission
+OR
+they don't want it in the front end
+(someone can go in your code and find the key)
+- or go into network, and find the api key
+- maybe MitM attack
+
+'Access-Control-Allow-Origin' header - if the script in the browser can call an API
+Remember that CORS IS A BROWSER POLICY
+this is why you can do this on the 'backend' - anywhere where code is not running in the browser
+
+create a proxy
+fetch(proxy + url)
+
+
+
